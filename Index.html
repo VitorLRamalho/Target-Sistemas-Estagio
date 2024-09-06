@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programas em JavaScript</title>
+</head>
+<body>
+    <h1>Target Sistemas</h1>
+    
+    <h2>1. Verificar se um número pertence à sequência de Fibonacci</h2>
+    <input type="number" id="fibonacciInput" placeholder="Digite um número">
+    <button onclick="checkFibonacci()">Verificar Fibonacci</button>
+    <p id="fibonacciResult"></p>
+    
+    <h2>2. Contar a ocorrência da letra 'a' em uma string</h2>
+    <input type="text" id="stringInput" placeholder="Digite uma string">
+    <button onclick="countLetterA()">Contar 'a'</button>
+    <p id="letterCountResult"></p>
+    
+    <h2>3. Valor da variável SOMA</h2>
+    <button onclick="calculateSoma()">Calcular SOMA</button>
+    <p id="somaResult"></p>
+    
+    <h2>4. Completar os próximos elementos das sequências</h2>
+    <p id="sequenceResults"></p>
+    
+    <h2>5. Identificar o interruptor que controla cada lâmpada</h2>
+    <p id="lampSolution">Para identificar qual interruptor controla qual lâmpada, siga estas instruções:</p>
+
+    <h2>Passos:</h2>
+    <ol>
+        <li><button onclick="step1()">Ligar o primeiro interruptor e deixar ligado por 10 minutos</button></li>
+        <li><button onclick="step2()">Desligar o primeiro interruptor e ligar o segundo interruptor</button></li>
+        <li><button onclick="showSolution()">Verificar as lâmpadas</button></li>
+    </ol>
+
+    <div id="result"></div>
+    
+    <script>
+        // 1. Verificar se um número pertence à sequência de Fibonacci
+        function checkFibonacci() {
+            const num = parseInt(document.getElementById('fibonacciInput').value, 10);
+            if (num < 0) {
+                document.getElementById('fibonacciResult').textContent = "Número inválido!";
+                return;
+            }
+            let a = 0, b = 1;
+            while (a < num) {
+                [a, b] = [b, a + b];
+            }
+            document.getElementById('fibonacciResult').textContent = a === num ? 
+                `O número ${num} pertence à sequência de Fibonacci.` :
+                `O número ${num} não pertence à sequência de Fibonacci.`;
+        }
+
+        // 2. Contar a ocorrência da letra 'a' em uma string
+        function countLetterA() {
+            const text = document.getElementById('stringInput').value;
+            const count = (text.match(/a/gi) || []).length;
+            document.getElementById('letterCountResult').textContent = 
+                `A letra 'a' aparece ${count} vezes na string.`;
+        }
+
+        // 3. Valor da variável SOMA
+        function calculateSoma() {
+            let indice = 12;
+            let soma = 0;
+            let k = 1;
+            while (k < indice) {
+                k = k + 1;
+                soma = soma + k;
+            }
+            document.getElementById('somaResult').textContent = `O valor da variável SOMA é ${soma}.`;
+        }
+
+        // 4. Completar os próximos elementos das sequências
+        function completeSequences() {
+            const results = [];
+            results.push('a) A sequência é uma progressão aritmética com diferença 2. O próximo número é 9.');
+            results.push('b) A sequência é uma progressão geométrica com razão 2. O próximo número é 128.');
+            results.push('c) A sequência são os quadrados dos números inteiros. O próximo número é 49 (7²).');
+            results.push('d) A sequência são os quadrados dos múltiplos de 2: 2², 4², 6², 8². O próximo número é 100 (10²).');
+            results.push('e) A sequência é a sequência de Fibonacci. O próximo número é 13.');
+            results.push('f) A sequência não segue um padrão claro, mas parece que após 19 os números são consecutivos. O próximo número é 20.');
+
+            document.getElementById('sequenceResults').innerHTML = results.join('<br>');
+        }
+
+        completeSequences(); // Preenche as respostas para as sequências automaticamente
+
+        // 5 Identificar Qual Interruptor Controla Cada Lâmpada
+        function step1() {
+            alert("Ligue o primeiro interruptor e deixe-o ligado por 10 minutos. Após isso, você pode desligá-lo.");
+        }
+
+        function step2() {
+            alert("Agora, desligue o primeiro interruptor e ligue o segundo interruptor. Depois, vá até as salas das lâmpadas.");
+        }
+
+        function showSolution() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <h3>Solução:</h3>
+                <p>1. A lâmpada que está acesa é controlada pelo segundo interruptor.</p>
+                <p>2. A lâmpada que está apagada, mas ainda quente, é controlada pelo primeiro interruptor.</p>
+                <p>3. A lâmpada que está apagada e fria é controlada pelo terceiro interruptor.</p>
+            `;
+        }
+
+    </script>
+</body>
+</html>
